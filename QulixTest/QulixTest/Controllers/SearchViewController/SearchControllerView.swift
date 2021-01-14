@@ -6,9 +6,9 @@ enum SearchBarState {
 }
 
 class SearchControllerView: UIView {
-    
+
     @IBOutlet private weak var searchBar: UISearchBar!
-    @IBOutlet private weak var charactersTableView: UITableView!
+    @IBOutlet weak var charactersTableView: UITableView!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var noResultsLabel: UILabel!
     @IBOutlet private weak var searchBarRightConstraint: NSLayoutConstraint!
@@ -44,4 +44,5 @@ class SearchControllerView: UIView {
         noResultsLabel.isHidden = result
         charactersTableView.reloadData()
     }
+    
 }
