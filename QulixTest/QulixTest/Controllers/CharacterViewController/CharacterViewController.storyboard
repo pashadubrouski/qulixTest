@@ -13,7 +13,7 @@
         <scene sceneID="xKe-Fp-HDE">
             <objects>
                 <viewController storyboardIdentifier="CharacterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PnI-OX-mcU" customClass="CharacterViewController" customModule="QulixTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DMp-3R-dgO">
+                    <view key="view" contentMode="scaleToFill" id="DMp-3R-dgO" customClass="CharacterControllerView" customModule="QulixTest" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -80,13 +80,13 @@
                             <constraint firstItem="1hc-ZJ-CW1" firstAttribute="leading" secondItem="dMm-TV-nuZ" secondAttribute="leading" id="wQY-mG-itK"/>
                             <constraint firstItem="Dp8-b9-8He" firstAttribute="leading" secondItem="dMm-TV-nuZ" secondAttribute="leading" constant="100" id="yY2-Gd-FBr"/>
                         </constraints>
+                        <connections>
+                            <outlet property="characterImageView" destination="Dp8-b9-8He" id="Kry-1m-QmU"/>
+                            <outlet property="genderLabel" destination="1hc-ZJ-CW1" id="5ik-tb-Vwx"/>
+                            <outlet property="nameLabel" destination="cog-uR-OPf" id="bGA-bl-9s9"/>
+                            <outlet property="statusLabel" destination="8vm-QB-xNp" id="GLQ-Jj-pQb"/>
+                        </connections>
                     </view>
-                    <connections>
-                        <outlet property="characterImageView" destination="Dp8-b9-8He" id="fFM-0x-SPg"/>
-                        <outlet property="genderLabel" destination="1hc-ZJ-CW1" id="Q9Q-sL-vcM"/>
-                        <outlet property="nameLabel" destination="cog-uR-OPf" id="lOC-aA-xIL"/>
-                        <outlet property="statusLabel" destination="8vm-QB-xNp" id="vFW-pw-Qoa"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Gq-PG-Hhy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

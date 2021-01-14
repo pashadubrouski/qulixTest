@@ -8,7 +8,6 @@ class SearchViewControllerBuilder {
         else { return nil }
         guard let seacrhViewController = destinationController.viewControllers.first as? SearchViewController
         else { return nil }
-        
         let router = SearchViewControllerRouter(controller: seacrhViewController, characterBuilder: characterBuilder)
         let viewModel = SearchViewModel(router: router)
         seacrhViewController.viewModel = viewModel

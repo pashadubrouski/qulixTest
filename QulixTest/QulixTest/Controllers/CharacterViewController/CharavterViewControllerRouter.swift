@@ -11,7 +11,7 @@ class CharacterViewControllerRouter {
         self.searchBuilder = searchBuilder
     }
     
-    func routeToSearchViewController(){
+    func routeToSearchViewController() {
         controller.navigationController?.popViewController(animated: true)
     }
 }

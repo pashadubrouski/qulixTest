@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB3AAA4425B050B60048D943 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3AAA4325B050B60048D943 /* UIImageView+.swift */; };
 		DB51708D25AF1D1900696070 /* SearchControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51708C25AF1D1900696070 /* SearchControllerView.swift */; };
 		DB51709025AF1F2000696070 /* ControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51708F25AF1F2000696070 /* ControllerView.swift */; };
+		DB51709525AF6B0B00696070 /* CharacterControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51709425AF6B0B00696070 /* CharacterControllerView.swift */; };
 		DB76C36B25ACA48A00D634B3 /* SearchViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76C36A25ACA48A00D634B3 /* SearchViewControllerBuilder.swift */; };
 		DB76C36E25ACA4C800D634B3 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB76C36D25ACA4C800D634B3 /* SearchViewController.storyboard */; };
 		DB76C39725AD898C00D634B3 /* SearchViewControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76C39625AD898B00D634B3 /* SearchViewControllerRouter.swift */; };
@@ -29,8 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB3AAA4325B050B60048D943 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		DB51708C25AF1D1900696070 /* SearchControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerView.swift; sourceTree = "<group>"; };
 		DB51708F25AF1F2000696070 /* ControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerView.swift; sourceTree = "<group>"; };
+		DB51709425AF6B0B00696070 /* CharacterControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterControllerView.swift; sourceTree = "<group>"; };
 		DB76C36A25ACA48A00D634B3 /* SearchViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerBuilder.swift; sourceTree = "<group>"; };
 		DB76C36D25ACA4C800D634B3 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
 		DB76C39625AD898B00D634B3 /* SearchViewControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerRouter.swift; sourceTree = "<group>"; };
@@ -63,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB3AAA4225B050A00048D943 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DB3AAA4325B050B60048D943 /* UIImageView+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DBD547F9256297750077B307 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +94,7 @@
 		DBD54804256297750077B307 /* QulixTest */ = {
 			isa = PBXGroup;
 			children = (
+				DB3AAA4225B050A00048D943 /* Extensions */,
 				DBD548132562977B0077B307 /* Info.plist */,
 				DBD54831256949290077B307 /* Supporting Files */,
 				DBD54826256948510077B307 /* Controllers */,
@@ -123,6 +136,7 @@
 				DB76C39F25AD89FD00D634B3 /* CharacterViewController.storyboard */,
 				DB76C3A225AD8AF300D634B3 /* CharavterViewControllerRouter.swift */,
 				DB76C3A525AD8B0E00D634B3 /* CharacterViewModel.swift */,
+				DB51709425AF6B0B00696070 /* CharacterControllerView.swift */,
 			);
 			path = CharacterViewController;
 			sourceTree = "<group>";
@@ -286,7 +300,9 @@
 				DB76C39A25AD89C100D634B3 /* SearchViewModel.swift in Sources */,
 				DBD5480A256297750077B307 /* SearchViewController.swift in Sources */,
 				DBD5481A2562B2510077B307 /* CharaсterTableViewCell.swift in Sources */,
+				DB51709525AF6B0B00696070 /* CharacterControllerView.swift in Sources */,
 				DBD548202567CEBF0077B307 /* CharacterViewController.swift in Sources */,
+				DB3AAA4425B050B60048D943 /* UIImageView+.swift in Sources */,
 				DB76C3A625AD8B0E00D634B3 /* CharacterViewModel.swift in Sources */,
 				DBD5481C2562B7D50077B307 /* Character.swift in Sources */,
 				DBD54806256297750077B307 /* AppDelegate.swift in Sources */,

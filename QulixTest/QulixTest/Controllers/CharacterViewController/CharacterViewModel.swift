@@ -3,10 +3,7 @@ import UIKit
 
 class CharacterViewModel {
     
-    var image: UIImage?
-    var name: String?
-    var status: String?
-    var gender: String?
+    var character: Character?
     
     private let router: CharacterViewControllerRouter
     init(router: CharacterViewControllerRouter) {
@@ -16,5 +13,4 @@ class CharacterViewModel {
     func openSearchViewController() {
         router.routeToSearchViewController()
     }
-    
 }

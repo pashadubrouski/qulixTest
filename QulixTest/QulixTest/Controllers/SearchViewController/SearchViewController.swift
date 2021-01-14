@@ -4,7 +4,6 @@ class SearchViewController: UIViewController {
     
     
     //MARK: - Properties
-    private var searchState: SearchBarState = .noSearch
     var viewModel: SearchViewModel?
     
     //MARK: - Life cycle VC
@@ -12,19 +11,23 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         controllerView.setupUI()
-        print("itswork")
     }
-
-    //MARK: - @IBActions
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+    
+    //MARK: - Methods
+    private func stopSearch() {
         viewModel?.searchCharacters.removeAll()
         controllerView.stopSearch()
-        searchState = .noSearch
+        controllerView.searchState = .noSearch
+    }
+    
+    //MARK: - @IBActions
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        stopSearch()
     }
 }
 
 //MARK: - tableView dataSourse&delegate
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.searchCharacters.count ?? 0
     }
@@ -34,13 +37,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         let imageUrl = URL(string: (viewModel?.searchCharacters[indexPath.row].image)!)!
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: imageUrl ) else { return }
-            DispatchQueue.main.async {
-                let image = UIImage(data: imageData)
-                cell.characterImageView.image = image
-            }
-        }
+        cell.characterImageView.setImageWithUrl(imageUrl)
         cell.characterNameLabel.text = viewModel?.searchCharacters[indexPath.row].name
         cell.characterStatusLabel.text = viewModel?.searchCharacters[indexPath.row].status.rawValue
         return cell
@@ -48,7 +45,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.openCharacterVC(index: indexPath.row)
-        
+        stopSearch()
     }
 }
 
@@ -56,8 +53,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension SearchViewController: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        controllerView.searchBarState(isSearch: searchState)
-        searchState = .isSearch
+        controllerView.searchState = .isSearch
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

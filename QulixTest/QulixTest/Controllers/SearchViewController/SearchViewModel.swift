@@ -16,25 +16,23 @@ class SearchViewModel {
     }()
     
     func openCharacterVC(index: Int) {
-        let character = searchCharacters[index]
-
-        router.routeToCharacterViewController(character: character)
+        router.routeToCharacterViewController(character: searchCharacters[index])
     }
     
     func searchUsers(urlString: String, coplition: @escaping (_ result: Bool) -> ()){
         if urlString != ""{
-        charactersService.getCharacters(with: urlString) { (result, error) in
-            guard let result = result, result.results.count > 0, error == nil else {
-                self.searchCharacters = []
-                coplition(false)
-                return
+            charactersService.getCharacters(with: urlString) { (result, error) in
+                guard let result = result, result.results.count > 0, error == nil else {
+                    self.searchCharacters = []
+                    coplition(false)
+                    return
+                }
+                self.searchResult = result
+                self.searchCharacters = result.results
+                coplition(true)
             }
-            self.searchResult = result
-            self.searchCharacters = result.results
-            coplition(true)
-        }
         } else {
-                searchCharacters.removeAll()
+            searchCharacters.removeAll()
             coplition(false)
         }
     }
