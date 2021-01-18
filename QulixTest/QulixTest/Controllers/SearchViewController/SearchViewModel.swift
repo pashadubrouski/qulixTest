@@ -1,13 +1,12 @@
 import UIKit
 
 protocol Observer: class {
-    associatedtype ValueType
-    func update(searchCharacters: ValueType?)
+    func update(searchCharacters: [Character]?)
 }
 
 protocol Subject: class {
-    associatedtype ValueType: Observer
-    var observers: [ValueType] { get set }
+    associatedtype ObserverType: Observer
+    var observers: [ObserverType] { get set }
     func notificateObservers()
 }
 
@@ -22,8 +21,8 @@ class SearchViewModel: Subject {
         self.router = router
     }
     
-     var searchResult: Result?{
-        didSet{
+     var searchResult: Result? {
+        didSet {
             notificateObservers()
         }
     }
@@ -91,12 +90,12 @@ class SearchViewModel: Subject {
 }
 
 extension Subject {
-    func register(observer: ValueType){
-        self.observers.append(observer)
+    func register(observer: ObserverType){
+        observers.append(observer)
     }
 
-    func remove(observer: ValueType){
-        self.observers = self.observers.filter({$0 !== observer})
+    func remove(observer: ObserverType){
+        observers = observers.filter({$0 !== observer})
     }
 }
 
