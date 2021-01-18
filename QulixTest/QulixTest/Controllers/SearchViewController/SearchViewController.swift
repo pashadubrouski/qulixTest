@@ -13,7 +13,7 @@ class SearchViewController: UIViewController, Observer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        viewModel?.register(observer: self)
+        viewModel?.register(observer: self)
         
     }
  
