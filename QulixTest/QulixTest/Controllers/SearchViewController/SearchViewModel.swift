@@ -1,17 +1,20 @@
 import UIKit
 
 protocol Observer: class {
-    func update(searchCharacters: [Character]?)
+    associatedtype ValueType
+    func update(searchCharacters: ValueType?)
 }
 
 protocol Subject: class {
-    var observers: [Observer] { get set }
+    associatedtype ValueType: Observer
+    var observers: [ValueType] { get set }
     func notificateObservers()
 }
 
+
 class SearchViewModel: Subject {
-    
-    var observers: [Observer] = []
+
+    var observers: [SearchViewController] = []
     
     private let router: SearchViewControllerRouter
     
@@ -88,11 +91,11 @@ class SearchViewModel: Subject {
 }
 
 extension Subject {
-    func register(observer: Observer){
+    func register(observer: ValueType){
         self.observers.append(observer)
     }
-    
-    func remove(observer: Observer){
+
+    func remove(observer: ValueType){
         self.observers = self.observers.filter({$0 !== observer})
     }
 }
