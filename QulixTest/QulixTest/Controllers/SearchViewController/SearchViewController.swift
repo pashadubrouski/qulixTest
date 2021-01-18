@@ -1,22 +1,18 @@
 import UIKit
 
-class SearchViewController: UIViewController, Observer {
+class SearchViewController: UIViewController {
     
     
     //MARK: - Properties
     var viewModel: SearchViewModel?
     
-    
-    
-   
     //MARK: - Life cycle VC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.register(observer: self)
-        
+        viewModel?.characters.register({ characters in self.update(characters: characters) })
     }
- 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -30,10 +26,10 @@ class SearchViewController: UIViewController, Observer {
         controllerView.searchState = .noSearch
     }
     
-    func update(searchCharacters: [Character]?) {
+    func update(characters: [Character]?) {
         var result: Bool = false
-        if let charactersResult = searchCharacters {
-            result = charactersResult.count > 0
+        if let characters = characters {
+            result = characters.count > 0
         }
         self.controllerView.updateVeiwWithResult(result: result)
     }
@@ -49,14 +45,14 @@ class SearchViewController: UIViewController, Observer {
 //MARK: - tableView dataSourse&delegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.searchResult?.results.count ?? 0
+        return viewModel?.characters.data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CharacterTableViewCell else {
             return UITableViewCell()
         }
-        guard let character = viewModel?.searchResult?.results[indexPath.row]
+        guard let character = viewModel?.characters.data?[indexPath.row]
         else { return UITableViewCell() }
         let imageUrl = URL(string: (character.image))!
         cell.characterImageView.setImageWithUrl(imageUrl)
@@ -80,11 +76,6 @@ extension SearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let textString = searchBar.text, let urlString = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-//        viewModel?.searchUsers(urlString: urlString, coplition: { (result) in
-//                        DispatchQueue.main.async {
-//                            self.controllerView.updateVeiwWithResult(result: result)
-//                        }
-//        })
         viewModel?.searchUsers(urlString: urlString)
     }
 }
