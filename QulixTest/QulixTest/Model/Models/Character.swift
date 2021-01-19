@@ -13,6 +13,7 @@ struct Info: Codable {
     let prev: String?
 }
 
+
 // MARK: - Character
 struct Character: Codable {
     let id: Int

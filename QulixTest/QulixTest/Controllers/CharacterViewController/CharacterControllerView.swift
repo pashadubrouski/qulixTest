@@ -2,16 +2,20 @@ import UIKit
 
 class CharacterControllerView: UIView {
     
+    //MARK: - @IBOutlets
     @IBOutlet private weak var characterImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var genderLabel: UILabel!
-    
-    func setupCharacter(character: Character) {
+
+//MARK: - Methods 
+    func setupCharacter(character: Character?) {
+        guard let character = character else { return }
         guard let imageUrl = URL(string: character.image ) else { return }
-        characterImageView.setImageWithUrl(imageUrl)
-        nameLabel.text = character.name
-        statusLabel.text = character.status.rawValue
-        genderLabel.text = character.gender.rawValue
+            self.characterImageView.setImageWithUrl(imageUrl)
+            self.nameLabel.text = character.name
+            self.statusLabel.text = character.status.rawValue
+            self.genderLabel.text = character.gender.rawValue
     }
 }
+

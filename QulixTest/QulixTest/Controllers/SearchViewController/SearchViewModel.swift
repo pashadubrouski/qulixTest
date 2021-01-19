@@ -17,27 +17,27 @@ class SearchViewModel {
     }()
     
     func openCharacterVC(index: Int) {
-        guard let chracter = characters.data?[index] else { return }
-        router.routeToCharacterViewController(character: chracter)
+        guard let character = characters.data?[index] else { return }
+        router.routeToCharacterViewController(characterId: character.id)
     }
     
     func stopSearch() {
-        characters.data = nil
+    characters.data = nil
     }
 
     func searchUsers(urlString: String){
         if urlString != "" {
-            charactersService.getCharacters(with: urlString) { [weak self] (result, error) in
+            charactersService.getCharactersByName(with: urlString) { [weak self] (result, error) in
                 DispatchQueue.main.async {
                     guard let result = result, result.results.count > 0, error == nil else {
-                        self?.characters.data = nil
+                        self?.characters.data = []
                         return
                     }
                     self?.characters.data = result.results
                 }
             }
         } else {
-            characters.data = nil
+            characters.data = []
         }
     }
 }

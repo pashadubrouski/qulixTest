@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3AAA4425B050B60048D943 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3AAA4325B050B60048D943 /* UIImageView+.swift */; };
-		DB3AAA6D25B5D9730048D943 /* Observered.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3AAA6C25B5D9730048D943 /* Observered.swift */; };
+		DB3AAA6D25B5D9730048D943 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3AAA6C25B5D9730048D943 /* Observable.swift */; };
 		DB51708D25AF1D1900696070 /* SearchControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51708C25AF1D1900696070 /* SearchControllerView.swift */; };
 		DB51709025AF1F2000696070 /* ControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51708F25AF1F2000696070 /* ControllerView.swift */; };
 		DB51709525AF6B0B00696070 /* CharacterControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51709425AF6B0B00696070 /* CharacterControllerView.swift */; };
@@ -33,7 +33,7 @@
 
 /* Begin PBXFileReference section */
 		DB3AAA4325B050B60048D943 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
-		DB3AAA6C25B5D9730048D943 /* Observered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observered.swift; sourceTree = "<group>"; };
+		DB3AAA6C25B5D9730048D943 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		DB51708C25AF1D1900696070 /* SearchControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerView.swift; sourceTree = "<group>"; };
 		DB51708F25AF1F2000696070 /* ControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerView.swift; sourceTree = "<group>"; };
 		DB51709425AF6B0B00696070 /* CharacterControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterControllerView.swift; sourceTree = "<group>"; };
@@ -111,11 +111,11 @@
 			isa = PBXGroup;
 			children = (
 				DBD54809256297750077B307 /* SearchViewController.swift */,
+				DB51708C25AF1D1900696070 /* SearchControllerView.swift */,
+				DB76C39925AD89C100D634B3 /* SearchViewModel.swift */,
+				DB76C39625AD898B00D634B3 /* SearchViewControllerRouter.swift */,
 				DB76C36A25ACA48A00D634B3 /* SearchViewControllerBuilder.swift */,
 				DB76C36D25ACA4C800D634B3 /* SearchViewController.storyboard */,
-				DB76C39625AD898B00D634B3 /* SearchViewControllerRouter.swift */,
-				DB76C39925AD89C100D634B3 /* SearchViewModel.swift */,
-				DB51708C25AF1D1900696070 /* SearchControllerView.swift */,
 			);
 			path = SearchViewController;
 			sourceTree = "<group>";
@@ -134,11 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				DBD5481F2567CEBF0077B307 /* CharacterViewController.swift */,
+				DB51709425AF6B0B00696070 /* CharacterControllerView.swift */,
+				DB76C3A525AD8B0E00D634B3 /* CharacterViewModel.swift */,
+				DB76C3A225AD8AF300D634B3 /* CharavterViewControllerRouter.swift */,
 				DB76C39C25AD89EB00D634B3 /* CharacterViewControllerBuilder.swift */,
 				DB76C39F25AD89FD00D634B3 /* CharacterViewController.storyboard */,
-				DB76C3A225AD8AF300D634B3 /* CharavterViewControllerRouter.swift */,
-				DB76C3A525AD8B0E00D634B3 /* CharacterViewModel.swift */,
-				DB51709425AF6B0B00696070 /* CharacterControllerView.swift */,
 			);
 			path = CharacterViewController;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 			children = (
 				DBD5482F256948EC0077B307 /* Services */,
 				DBD5482E256948E70077B307 /* Models */,
-				DB3AAA6C25B5D9730048D943 /* Observered.swift */,
+				DB3AAA6C25B5D9730048D943 /* Observable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB3AAA6D25B5D9730048D943 /* Observered.swift in Sources */,
+				DB3AAA6D25B5D9730048D943 /* Observable.swift in Sources */,
 				DB76C36B25ACA48A00D634B3 /* SearchViewControllerBuilder.swift in Sources */,
 				DB76C39A25AD89C100D634B3 /* SearchViewModel.swift in Sources */,
 				DBD5480A256297750077B307 /* SearchViewController.swift in Sources */,

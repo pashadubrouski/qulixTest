@@ -4,13 +4,13 @@ class SearchViewController: UIViewController {
     
     
     //MARK: - Properties
-    var viewModel: SearchViewModel?
+    var viewModel: SearchViewModel!
     
     //MARK: - Life cycle VC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.characters.register({ characters in self.update(characters: characters) })
+        viewModel.characters.register({ characters in self.update(characters: characters) })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,31 +21,29 @@ class SearchViewController: UIViewController {
     
     //MARK: - Methods
     private func stopSearch() {
-        viewModel?.stopSearch()
+        viewModel.stopSearch()
         controllerView.stopSearch()
         controllerView.searchState = .noSearch
     }
     
     func update(characters: [Character]?) {
         var result: Bool = false
-        if let characters = characters {
-            result = characters.count > 0
+        if let charactersResult = characters {
+            result = charactersResult.count > 0
         }
         self.controllerView.updateVeiwWithResult(result: result)
     }
-    
     
     //MARK: - @IBActions
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         stopSearch()
     }
-    
 }
 
 //MARK: - tableView dataSourse&delegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.characters.data?.count ?? 0
+        return viewModel.characters.data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +60,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel?.openCharacterVC(index: indexPath.row)
+        viewModel.openCharacterVC(index: indexPath.row)
         stopSearch()
     }
 }
@@ -76,7 +74,7 @@ extension SearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let textString = searchBar.text, let urlString = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        viewModel?.searchUsers(urlString: urlString)
+        viewModel.searchUsers(urlString: urlString)
     }
 }
 

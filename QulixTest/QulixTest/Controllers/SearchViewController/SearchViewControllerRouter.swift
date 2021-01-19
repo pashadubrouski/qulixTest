@@ -9,9 +9,8 @@ class SearchViewControllerRouter {
         self.characterBuilder = characterBuilder
     }
     
-    func routeToCharacterViewController(character: Character) { // TODO: 1)передавать id в builder 
-        if  let characterController = characterBuilder?.build() {
-            characterController.viewModel?.character = character
+    func routeToCharacterViewController(characterId: Int) {
+        if  let characterController = characterBuilder?.build(characterId: characterId) {
             controller.navigationController?.pushViewController(characterController, animated: true)
         }
     }
