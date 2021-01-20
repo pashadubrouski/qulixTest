@@ -6,7 +6,6 @@ enum SearchBarState {
 }
 
 class SearchControllerView: UIView {
-
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet weak var charactersTableView: UITableView!
     @IBOutlet private weak var cancelButton: UIButton!
@@ -43,6 +42,6 @@ class SearchControllerView: UIView {
     func updateVeiwWithResult(result: Bool) {
         noResultsLabel.isHidden = result
         charactersTableView.reloadData()
+        
     }
-    
 }

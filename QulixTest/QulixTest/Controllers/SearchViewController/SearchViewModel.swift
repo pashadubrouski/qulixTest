@@ -11,10 +11,9 @@ class SearchViewModel {
     }
     
     var searchResult: Result?
-    var selectedCharacter: Character?
-    private lazy var charactersService: CharacterServiceProtocol = {
-        return CharactersService()
-    }()
+    //  var selectedCharacter: Character?
+    
+    private var apiService: ApiService<Result> = ApiService()
     
     func openCharacterVC(index: Int) {
         guard let character = characters.data?[index] else { return }
@@ -22,15 +21,24 @@ class SearchViewModel {
     }
     
     func stopSearch() {
-    characters.data = nil
+        characters.data = nil
     }
-
-    func searchUsers(urlString: String){
-        if urlString != "" {
-            charactersService.getCharactersByName(with: urlString) { [weak self] (result, error) in
+    
+    func searchCharacters(name: String) {
+        let parameters = ["name": name]
+        let path: Path = .characters(idComponent: "", nameParameters: parameters)
+        let httpTask = HTTPTask(path: path, method: .get, headers: nil)
+        if name != "" {
+            apiService.getData(httpTask: httpTask) { [weak self] (result, error) in
                 DispatchQueue.main.async {
                     guard let result = result, result.results.count > 0, error == nil else {
                         self?.characters.data = []
+                        switch error {
+                        case .redirect: print("redirect")
+                        case .requestError: print("requestError")
+                        case .serverError: print("serverError")
+                        case .none: print("Error")
+                        }
                         return
                     }
                     self?.characters.data = result.results

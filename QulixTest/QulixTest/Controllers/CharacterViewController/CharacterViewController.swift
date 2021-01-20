@@ -11,6 +11,7 @@ class CharacterViewController: UIViewController {
         viewModel.getInfoAboutCharacter()
             self.viewModel.character.register { (character) in self.controllerView.setupCharacter(character: character) }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }

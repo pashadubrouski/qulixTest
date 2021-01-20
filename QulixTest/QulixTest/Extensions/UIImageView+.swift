@@ -1,11 +1,3 @@
-//
-//  UIImageView+.swift
-//  QulixTest
-//
-//  Created by Павел Дубровский on 14.01.21.
-//  Copyright © 2021 Павел Дубровский. All rights reserved.
-//
-
 import UIKit
 
 extension UIImageView {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB3179B225B72F240041555C /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3179B125B72F240041555C /* ApiService.swift */; };
 		DB3AAA4425B050B60048D943 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3AAA4325B050B60048D943 /* UIImageView+.swift */; };
 		DB3AAA6D25B5D9730048D943 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3AAA6C25B5D9730048D943 /* Observable.swift */; };
 		DB51708D25AF1D1900696070 /* SearchControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51708C25AF1D1900696070 /* SearchControllerView.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB3179B125B72F240041555C /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		DB3AAA4325B050B60048D943 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		DB3AAA6C25B5D9730048D943 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		DB51708C25AF1D1900696070 /* SearchControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				DBD5481D2562C1410077B307 /* CharactersService .swift */,
+				DB3179B125B72F240041555C /* ApiService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				DBD5481E2562C1410077B307 /* CharactersService .swift in Sources */,
 				DB76C39D25AD89EB00D634B3 /* CharacterViewControllerBuilder.swift in Sources */,
 				DB51708D25AF1D1900696070 /* SearchControllerView.swift in Sources */,
+				DB3179B225B72F240041555C /* ApiService.swift in Sources */,
 				DB76C39725AD898C00D634B3 /* SearchViewControllerRouter.swift in Sources */,
 				DB76C3A325AD8AF300D634B3 /* CharavterViewControllerRouter.swift in Sources */,
 				DBD54808256297750077B307 /* SceneDelegate.swift in Sources */,

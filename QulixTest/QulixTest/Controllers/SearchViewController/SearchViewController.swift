@@ -73,8 +73,8 @@ extension SearchViewController: UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let textString = searchBar.text, let urlString = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        viewModel.searchUsers(urlString: urlString)
+        guard let textString = searchBar.text, let name = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        viewModel.searchCharacters(name: name)
     }
 }
 
