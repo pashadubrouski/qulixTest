@@ -60,7 +60,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.openCharacterVC(index: indexPath.row)
         controllerView.searchState = .searchPause
-    
     }
 }
 

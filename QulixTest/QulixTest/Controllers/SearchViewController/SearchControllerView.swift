@@ -13,7 +13,6 @@ class SearchControllerView: UIView {
     @IBOutlet private weak var noResultsLabel: UILabel!
     @IBOutlet private weak var searchBarRightConstraint: NSLayoutConstraint!
     
-    var searchText: String?
     
     var searchState: SearchBarState = .noSearch {
         didSet{
@@ -21,7 +20,6 @@ class SearchControllerView: UIView {
                 searchBarRightConstraint.constant = 0
                 cancelButton.isHidden = true
                 searchBar.endEditing(true)
-                searchBar.text = ""
                 charactersTableView.reloadData()
             } else {
                 searchBarRightConstraint.constant -= cancelButton.frame.width
@@ -39,7 +37,6 @@ class SearchControllerView: UIView {
             charactersTableView.reloadData()
         case .isSearch: break 
         case .searchPause:
-            searchBar.text = searchText
             searchBar.becomeFirstResponder()
         }
     }
@@ -47,12 +44,11 @@ class SearchControllerView: UIView {
     func stopSearch() {
         noResultsLabel.isHidden = true
         searchState = .isSearch
+        searchBar.text = ""
     }
     
     func updateVeiwWithResult(result: Bool) {
         noResultsLabel.isHidden = result
-        charactersTableView.reloadData()
-        searchText = searchBar.text
-        
+        charactersTableView.reloadData()        
     }
 }
