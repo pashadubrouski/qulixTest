@@ -29,7 +29,7 @@ class CharacterViewModel {
     
     func getInfoAboutCharacter() {
         let idComponent = String(characterId)
-        let path: Path = .characters(idComponent: idComponent, nameParameters: ["":""])
+        let path: Path = .characters(component: idComponent, parameters: [:])
         let httpTask = HTTPTask(path: path, method: .get, headers: nil)
         apiService.getData(httpTask: httpTask) { [weak self] (result, error) in
             DispatchQueue.main.async {

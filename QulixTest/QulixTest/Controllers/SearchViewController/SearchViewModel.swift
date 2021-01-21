@@ -26,7 +26,7 @@ class SearchViewModel {
     
     func searchCharacters(name: String) {
         let parameters = ["name": name]
-        let path: Path = .characters(idComponent: "", nameParameters: parameters)
+        let path: Path = .characters(component: "", parameters: parameters)
         let httpTask = HTTPTask(path: path, method: .get, headers: nil)
         if name != "" {
             apiService.getData(httpTask: httpTask) { [weak self] (result, error) in

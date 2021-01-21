@@ -14,15 +14,15 @@ struct HTTPTask {
 }
 
 enum Path {
-    case characters(idComponent: String, nameParameters: [String: String])
+    case characters(component: String, parameters: [String: String])
     var rawValue: String {
         switch self {
-        case .characters(let idComponent, let nameParameters):
-            var parameters = ""
-            if idComponent == "" {
-                parameters = "?" + "\(nameParameters.map({$0.key + "=" + $0.value}).joined(separator: "&"))"
+        case .characters(let component, let parameters):
+            var queryString = ""
+            if component == "" {
+                queryString = "?" + "\(parameters.map({$0.key + "=" + $0.value}).joined(separator: "&"))"
             }
-            return "character/\(idComponent)" + parameters
+            return "character/\(component)" + queryString
         }
     }
 }

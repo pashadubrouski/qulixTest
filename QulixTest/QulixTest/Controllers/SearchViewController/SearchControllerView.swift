@@ -3,6 +3,7 @@ import UIKit
 enum SearchBarState {
     case isSearch
     case noSearch
+    case searchPause
 }
 
 class SearchControllerView: UIView {
@@ -11,6 +12,8 @@ class SearchControllerView: UIView {
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var noResultsLabel: UILabel!
     @IBOutlet private weak var searchBarRightConstraint: NSLayoutConstraint!
+    
+    var searchText: String?
     
     var searchState: SearchBarState = .noSearch {
         didSet{
@@ -28,10 +31,17 @@ class SearchControllerView: UIView {
     }
     
     func setupUI() {
-        cancelButton.isHidden = true
-        noResultsLabel.isHidden = true
-        noResultsLabel.text = "No results \n Try a new search"
-        charactersTableView.reloadData()
+        switch searchState {
+        case .noSearch:
+            cancelButton.isHidden = true
+            noResultsLabel.isHidden = true
+            noResultsLabel.text = "No results \n Try a new search"
+            charactersTableView.reloadData()
+        case .isSearch: break 
+        case .searchPause:
+            searchBar.text = searchText
+            searchBar.becomeFirstResponder()
+        }
     }
     
     func stopSearch() {
@@ -42,6 +52,7 @@ class SearchControllerView: UIView {
     func updateVeiwWithResult(result: Bool) {
         noResultsLabel.isHidden = result
         charactersTableView.reloadData()
+        searchText = searchBar.text
         
     }
 }

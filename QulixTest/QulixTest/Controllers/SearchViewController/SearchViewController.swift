@@ -2,12 +2,10 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    
     //MARK: - Properties
     var viewModel: SearchViewModel!
     
     //MARK: - Life cycle VC
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.characters.register({ characters in self.update(characters: characters) })
@@ -61,7 +59,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.openCharacterVC(index: indexPath.row)
-        stopSearch()
+        controllerView.searchState = .searchPause
+    
     }
 }
 
