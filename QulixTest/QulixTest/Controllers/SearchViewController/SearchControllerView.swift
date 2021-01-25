@@ -36,22 +36,7 @@ class SearchControllerView: UIView {
     }
     
     //MARK: - Methods
-    
-    //    func setupUI() {
-    //        switch searchState {
-    //        case .noSearch:
-    //            cancelButton.isHidden = true
-    //            noResultsLabel.isHidden = true
-    //            noResultsLabel.text = "No results \n Try a new search"
-    //            charactersTableView.reloadData()
-    //        case .isSearch: break
-    //        case .searchPause:
-    //            searchBar.becomeFirstResponder()
-    //        }
-    //    }
-    
-   
-    
+ 
     func setupUI() {
         if openedFromVc {
             searchBar.becomeFirstResponder()

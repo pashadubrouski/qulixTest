@@ -5,8 +5,7 @@ class CharacterViewModel {
     
     //MARK:- Properties
     
-    var character: Observer<Character> = Observer()
-    var charavterData: Subject<Character?> = Subject(nil)
+    var character: Subject<Character?> = Subject(nil)
     var characterId: Int
     
     private lazy var charactersService: CharacterServiceProtocol = {
@@ -35,19 +34,6 @@ class CharacterViewModel {
         apiService.getData(httpTask: httpTask) { [weak self] (result, error) in
             DispatchQueue.main.async {
                 guard let result = result , error == nil else {
-                    self?.character.data = nil
-                    return
-                }
-                self?.character.data = result
-            }
-        }
-    }
-    
-    func getInfoAboutCharacter2() {
-        searchService.getData(parameter: String(characterId), requestURL: .byId) { [weak self] (result, error) in
-            DispatchQueue.main.async {
-                guard let result = result , error == nil else {
-                    
                     self?.character.data = nil
                     return
                 }

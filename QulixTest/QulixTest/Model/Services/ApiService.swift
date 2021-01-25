@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 protocol ApiServiceProtocol {
     associatedtype DataType
@@ -73,6 +74,6 @@ class ApiService<T:Decodable>: ApiServiceProtocol {
         }
         task?.resume()
     }
-    
+
     func cancel() { task?.cancel() }
 }

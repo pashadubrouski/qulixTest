@@ -8,12 +8,16 @@ class SearchViewController: UIViewController {
     var viewModel: SearchViewModel!
     
     var publisher: NotificationCenter.Publisher?
-    var cancellable: AnyCancellable?
+    var searchBarCancellable: AnyCancellable?
+    var charactersCancellable: AnyCancellable?
     //MARK: - Life cycle VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.characters.register({ characters in self.update(characters: characters) })
-           setupSearchBarObserver()
+        //        viewModel.characters.register({ characters in self.update(characters: characters) })
+        charactersCancellable = viewModel.characters.publisher.sink { (characters) in
+            self.update(characters: characters)
+        }
+        setupSearchBarObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,19 +28,15 @@ class SearchViewController: UIViewController {
     
     //MARK: - Methods
     
-    fileprivate func setupSearchBarObserver() {
-        self.publisher = NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification , object: controllerView.searchBar.searchTextField)
-        publisher.map {
-            (($0.object as! UISearchTextField).text)
-        }
-        .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
-        .removeDuplicates()
-        
-        cancellable = publisher.sink(receiveValue: { (searchText) in
-            print("123")
-//            guard let name = searchText else { return }
-//            viewModel.searchCharacters(name: name)
-        })
+    private func setupSearchBarObserver() {
+        searchBarCancellable = NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification , object: controllerView.searchBar.searchTextField)
+            .map { (($0.object as! UISearchTextField).text) }
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink(receiveValue: { (searchText) in
+                guard let name = searchText else { return }
+                self.viewModel.searchCharacters(name: name)
+            } )
     }
     
     private func stopSearch() {
@@ -93,10 +93,6 @@ extension SearchViewController: UISearchBarDelegate{
         if controllerView.openedFromVc != true { controllerView.searchState = .isSearch } 
         
     }
-    
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            guard let textString = searchBar.text, let name = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        }
 }
 
 extension SearchViewController: ControllerView {

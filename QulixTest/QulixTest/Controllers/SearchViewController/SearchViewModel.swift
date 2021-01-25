@@ -2,7 +2,9 @@ import UIKit
 
 class SearchViewModel {
     
-    var characters: Observer<[Character]> = Observer()
+   // var characters: Observer<[Character]> = Observer()
+    
+    var characters: Subject<[Character]?> = Subject(nil)
     
     private let router: SearchViewControllerRouter
     
@@ -11,7 +13,6 @@ class SearchViewModel {
     }
     
     var searchResult: Result?
-    //  var selectedCharacter: Character?
     
     private var apiService: ApiService<Result> = ApiService()
     
