@@ -1,14 +1,19 @@
 import UIKit
+import Foundation
+import Combine
 
 class SearchViewController: UIViewController {
     
     //MARK: - Properties
     var viewModel: SearchViewModel!
     
+    var publisher: NotificationCenter.Publisher?
+    var cancellable: AnyCancellable?
     //MARK: - Life cycle VC
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.characters.register({ characters in self.update(characters: characters) })
+           setupSearchBarObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -18,10 +23,27 @@ class SearchViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    fileprivate func setupSearchBarObserver() {
+        self.publisher = NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification , object: controllerView.searchBar.searchTextField)
+        publisher.map {
+            (($0.object as! UISearchTextField).text)
+        }
+        .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+        .removeDuplicates()
+        
+        cancellable = publisher.sink(receiveValue: { (searchText) in
+            print("123")
+//            guard let name = searchText else { return }
+//            viewModel.searchCharacters(name: name)
+        })
+    }
+    
     private func stopSearch() {
         viewModel.stopSearch()
         controllerView.stopSearch()
         controllerView.searchState = .noSearch
+        controllerView.openedFromVc = false
     }
     
     func update(characters: [Character]?) {
@@ -59,7 +81,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.openCharacterVC(index: indexPath.row)
-        controllerView.searchState = .searchPause
+        //controllerView.searchState = .searchPause
+        controllerView.openedFromVc = true 
     }
 }
 
@@ -67,13 +90,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        controllerView.searchState = .isSearch
+        if controllerView.openedFromVc != true { controllerView.searchState = .isSearch } 
+        
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let textString = searchBar.text, let name = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        viewModel.searchCharacters(name: name)
-    }
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            guard let textString = searchBar.text, let name = textString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        }
 }
 
 extension SearchViewController: ControllerView {

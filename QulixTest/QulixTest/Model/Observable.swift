@@ -1,7 +1,6 @@
 import Foundation
 
 protocol Observable{
-    
     associatedtype DataType
     var data: DataType? { get set }
     func register( _ completion: @escaping (DataType) -> Void)

@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 enum SearchBarState {
     case isSearch
@@ -7,12 +8,18 @@ enum SearchBarState {
 }
 
 class SearchControllerView: UIView {
-    @IBOutlet private weak var searchBar: UISearchBar!
+    
+    //MARK: - @IBOutlets
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var charactersTableView: UITableView!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var noResultsLabel: UILabel!
     @IBOutlet private weak var searchBarRightConstraint: NSLayoutConstraint!
     
+    //MARK: - Properties
+    //   var searchState: SearchBarState = .noSearch
+    
+    var openedFromVc = false
     
     var searchState: SearchBarState = .noSearch {
         didSet{
@@ -28,16 +35,31 @@ class SearchControllerView: UIView {
         }
     }
     
+    //MARK: - Methods
+    
+    //    func setupUI() {
+    //        switch searchState {
+    //        case .noSearch:
+    //            cancelButton.isHidden = true
+    //            noResultsLabel.isHidden = true
+    //            noResultsLabel.text = "No results \n Try a new search"
+    //            charactersTableView.reloadData()
+    //        case .isSearch: break
+    //        case .searchPause:
+    //            searchBar.becomeFirstResponder()
+    //        }
+    //    }
+    
+   
+    
     func setupUI() {
-        switch searchState {
-        case .noSearch:
+        if openedFromVc {
+            searchBar.becomeFirstResponder()
+        } else {
             cancelButton.isHidden = true
             noResultsLabel.isHidden = true
             noResultsLabel.text = "No results \n Try a new search"
             charactersTableView.reloadData()
-        case .isSearch: break 
-        case .searchPause:
-            searchBar.becomeFirstResponder()
         }
     }
     
@@ -46,7 +68,7 @@ class SearchControllerView: UIView {
         searchState = .isSearch
         searchBar.text = ""
     }
-    
+  
     func updateVeiwWithResult(result: Bool) {
         noResultsLabel.isHidden = result
         charactersTableView.reloadData()        

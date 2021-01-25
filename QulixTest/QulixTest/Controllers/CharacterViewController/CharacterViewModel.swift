@@ -6,6 +6,7 @@ class CharacterViewModel {
     //MARK:- Properties
     
     var character: Observer<Character> = Observer()
+    var charavterData: Subject<Character?> = Subject(nil)
     var characterId: Int
     
     private lazy var charactersService: CharacterServiceProtocol = {
@@ -46,6 +47,7 @@ class CharacterViewModel {
         searchService.getData(parameter: String(characterId), requestURL: .byId) { [weak self] (result, error) in
             DispatchQueue.main.async {
                 guard let result = result , error == nil else {
+                    
                     self?.character.data = nil
                     return
                 }
